@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Api\StatusController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,20 +14,20 @@ use Illuminate\Http\Request;
 |
 */
 
-/*Route::get('hello/{name}', function($name) {
+Route::get('hello/{name}', function($name) {
     return "hello " . $name;
 });
 
-Route::get('hello-post/{name}', 'HelloWorldController@hello');*/
+Route::get('hello-post/{name}', 'HelloWorldController@hello');
 
 Route::get('bands', 'BandController@getAll');
 Route::post('bands/store', 'BandController@store');
 Route::get('bands/gender/{gender}', 'BandController@getBandsByGender');
 Route::get('bands/{id}', 'BandController@getById');
 
-
-
 Route::middleware('auth:api')->get('/user', function (Request $request) {
+
+Route::get('/v1/status', [StatusController::class, 'index']);
 
     return $request->user();
 
